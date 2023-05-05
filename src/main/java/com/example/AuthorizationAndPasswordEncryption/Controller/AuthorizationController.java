@@ -14,7 +14,7 @@ import com.example.AuthorizationAndPasswordEncryption.Modal.UserEntity;
 import com.example.AuthorizationAndPasswordEncryption.Service.AuthorizationService;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/v1/api")
 public class AuthorizationController {
 
 	
@@ -23,7 +23,9 @@ public class AuthorizationController {
 	
 	
 	@PostMapping("/login")
-	public ResponseEntity<UserEntity> login(@RequestBody final String username, final String password) throws AuthenticationFailedException{
-		return new ResponseEntity<>(authservice.authenticate(username, password),HttpStatus.ACCEPTED);
+	public String login(@RequestBody final String username, final String password) throws AuthenticationFailedException{
+		//return new ResponseEntity<>(authservice.authenticate(username, password),HttpStatus.ACCEPTED);
+		return authservice.authenticate(username, password);
+		
 	}
 }

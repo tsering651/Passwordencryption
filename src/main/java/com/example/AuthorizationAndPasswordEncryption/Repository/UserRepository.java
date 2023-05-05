@@ -9,7 +9,7 @@ import com.example.AuthorizationAndPasswordEncryption.Modal.UserEntity;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity,Integer> {
 	
-	@Query( "select u from UserEntity u where u.userName = :username" )
-	public UserEntity findByUserName( String username);
+//	@Query( "select * from UserEntity  where userName = :username" )
+//	public UserEntity findByUserName( String username);
 
 }

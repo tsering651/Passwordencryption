@@ -21,7 +21,7 @@ public class AuthorizationService {
 	@Autowired
 	private PasswordCryptographyProvider passwordCryptography;
     
-	public UserEntity authenticate(final String username, final String password) throws AuthenticationFailedException {
+	public String authenticate(final String username, final String password) throws AuthenticationFailedException {
 		UserEntity userentity=userrepo.findByUserName(username);
 		if(userentity==null) {
 			throw new AuthenticationFailedException("USR-001", "User not found");
@@ -30,7 +30,7 @@ public class AuthorizationService {
 		final String encryptedPassword = passwordCryptography.encrypt(password, userentity.getSalt());
 		
 		if(userentity.getPassword().equals(encryptedPassword)) {
-			return userentity;
+			return "Succesfully Logged In";
 		}
 		else {
 			throw new AuthenticationFailedException("USR-002", "Invalid password");
